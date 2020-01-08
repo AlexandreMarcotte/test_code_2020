@@ -1,6 +1,7 @@
 from time import sleep
 from pyautogui import hotkey
 import pyautogui
+from bs4 import BeautifulSoup as soup
 
 
 def open_tor_browser():
@@ -29,13 +30,11 @@ def wait_till_website_loaded():
         sleep(1)
         on_ip_location_website = pyautogui.locateCenterOnScreen(
                 'ip_location_logo.png')
-        print(on_ip_location_website)
 
 
 def restart_tor_session():
     sleep(1)
     loc = pyautogui.locateCenterOnScreen('restart_btn.png')
-    print(loc)
     pyautogui.click(loc)
     sleep(2)
 
@@ -45,28 +44,23 @@ def save_html():
     # To go in the save box
     hotkey('enter')
     # To replace the existing file
-    sleep(2)
+    sleep(3)
     hotkey('enter')
     # Wait for it to save
-    sleep(3)
+    sleep(7)
 
 
-def open_html():
-    html_path = '/home/record/.local/share/torbrowser/tbb/x86_64/tor-browser_en-US/Browser/Downloads/IP Location Finder - Geolocation.html'
-    with open(html_path) as f:
-        for line in f:
-            print(line)
 
 
-def main():
+def pull_html_from_ip_adress_site_on_tor():
     # on first pass only
     open_tor_browser()
     restart_tor_session()
     enter_website()
     save_html()
-    open_html()
 
 
 if __name__ == '__main__':
-    main()
+    # Test
+    pull_html_from_ip_adress_site_on_tor()
 
